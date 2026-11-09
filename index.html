@@ -297,23 +297,7 @@ footer small{font-size:.8rem;opacity:.75}
     <p>העמותה הוקמה על ידי הורים ומתנדבים שליוו ילדים במחלקה, וראו מקרוב כמה המשפחות צריכות יד מושטת.</p>
   </div>
 </div>
-<div class="wrap year-wrap">
-    <div class="lamps" aria-labelledby="lamps-title">
-    <div class="lamps-head">
-      <h2 id="lamps-title">כל חודש מדליק עוד אור</h2>
-      <div class="seg" role="radiogroup" aria-label="סוג הליווי">
-        <input type="radio" name="plan" id="pc-family" value="family" checked><label for="pc-family">משפחה · 540 ₪</label>
-        <input type="radio" name="plan" id="pc-child" value="child"><label for="pc-child">ילד · 180 ₪</label>
-      </div>
-    </div>
-    <div class="row12" id="row12" aria-hidden="true"></div>
-    <div class="lamps-foot" aria-live="polite">
-      <p class="total num"><span id="total">6,480 ₪</span><small id="total-label">שנה שלמה של ליווי למשפחה אחת</small></p>
-      <p class="per" id="per">בכל חודש: תמיכה כלכלית קבועה וליווי צמוד לילד החולה, לאחים ולהורים.</p>
-      <a class="btn btn-sun" id="plan-cta" href="#" data-demo="דף התרומה של הליווי השנתי">ללוות משפחה</a>
-    </div>
-  </div>
-</div></section>
+</section>
 
 <section class="dawn" id="what"><div class="wrap">
   <h2>האור שאנחנו מביאים</h2>
@@ -389,27 +373,6 @@ footer small{font-size:.8rem;opacity:.75}
 (function(){
   var toast=document.getElementById("toast"),tt;
   document.addEventListener("click",function(e){var a=e.target.closest("[data-demo]");if(!a)return;e.preventDefault();toast.innerHTML='התרומה באתר תיפתח בקרוב. בינתיים אפשר לתרום <a href="https://wa.me/972547644997" target="_blank" rel="noopener">בוואטסאפ</a> או בטלפון <a href="tel:0547644997">054-7644997</a>';toast.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("show")},7000);});
-  var M=["חשוון","כסלו","טבת","שבט","אדר","ניסן","אייר","סיוון","תמוז","אב","אלול","תשרי"];
-  var P={family:{n:540,l:"שנה שלמה של ליווי למשפחה אחת",p:"בכל חודש: תמיכה כלכלית קבועה וליווי צמוד לילד החולה, לאחים ולהורים.",c:"ללוות משפחה"},
-         child:{n:180,l:"שנה שלמה של ליווי לילד אחד",p:"בכל חודש: תמיכה ישירה בילד החולה לאורך תקופת הטיפולים.",c:"ללוות ילד"}};
-  var box=document.getElementById("row12"), reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  M.forEach(function(m){var d=document.createElement("div");d.className="lamp";d.innerHTML="<i></i><span></span>";d.lastChild.textContent=m;box.appendChild(d);});
-  var seen=false;
-  function apply(k){var p=P[k];
-    document.getElementById("total").textContent=(p.n*12).toLocaleString("he-IL")+" ₪";
-    document.getElementById("total-label").textContent=p.l;
-    document.getElementById("per").textContent=p.p;
-    document.getElementById("plan-cta").textContent=p.c;
-    [].slice.call(box.children).forEach(function(el,i){el.classList.remove("on");if(!seen)return;if(reduce)el.classList.add("on");else setTimeout(function(){el.classList.add("on")},120+i*110);});
-  }
-  [].slice.call(document.querySelectorAll("input[name=plan]")).forEach(function(r){r.addEventListener("change",function(){apply(r.value)})});
-  apply("family");
-  var panel=document.querySelector(".lamps");
-  function light(){if(seen)return;seen=true;apply(document.querySelector("input[name=plan]:checked").value);}
-  if("IntersectionObserver" in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){light();io.disconnect();}})},{threshold:.45});
-    io.observe(panel);
-  } else light();
 })();
 </script>
 <script>
@@ -429,7 +392,6 @@ footer small{font-size:.8rem;opacity:.75}
     [".intro h1",".intro .lede",".intro .cta"],
     [".projects h2",".projects .sub"],[".pj"],
     [".dusk h2",".dusk p.big",".dusk .wrap > div > p:not(.big)"],
-    [".lamps"],
     [".dawn h2"],[".acts li"],[".side"],
     [".alt"],
     [".trust h2",".trust .sub",".facts"],[".trust li"],
